@@ -54,4 +54,5 @@ from .models import t60_sabine, t60_eyring, t60_mellington, t60_csn730525
 from .models import calc_alpha_mean
 from .standard import ROOM_TYPES
 from .rt_imports import DiracReverberationData, REWReverberationData, REW_QUANTITIES, merge_rew_dfs
+from .room import Room
 
