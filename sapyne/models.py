@@ -18,7 +18,7 @@ def calc_alpha_mean(
         absorption: DataFrame,
         surface_sum: float
 ) -> Series:
-    """
+    r"""
     Calculate the mean absorption coefficient.
 
     Parameters
@@ -50,7 +50,7 @@ def t60_sabine(
         volume: float,
         constant: float = 0.163
 ) -> Series:
-    """
+    r"""
     Calculate T60 using the Sabine formula.
 
     Parameters
@@ -86,7 +86,7 @@ def t60_eyring(
         surface_sum: float,
         constant: float = 0.163
 ) -> Series:
-    """
+    r"""
     Calculate T60 using the Eyring formula.
 
     Parameters
@@ -127,7 +127,7 @@ def t60_mellington(
         attenuation: Series,
         constant: float = 0.163
 ) -> Series:
-    """
+    r"""
     Calculate T60 using the Mellington formula.
 
     Parameters
@@ -173,7 +173,7 @@ def t60_csn730525(
         attenuation: Series,
         constant: float = 0.163
 ) -> Series:
-    """
+    r"""
     Calculate T60 using the CSN 730525 standard.
 
     Parameters
