@@ -252,14 +252,14 @@ volume, surface area, and attenuation.</p>
 </span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a><span class="sd">    Equation</span>
 </span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a><span class="sd">    --------</span>
 </span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a><span class="sd">    $$</span>
-</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a><span class="sd">    T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot \text{attenuation} \cdot V}</span>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a><span class="sd">    T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot m \cdot V}</span>
 </span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a><span class="sd">    $$</span>
 </span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a><span class="sd">    where:</span>
 </span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a><span class="sd">    - $T_{60}$ is the reverberation time [s]</span>
 </span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a><span class="sd">    - $V$ is the volume of the room [m³]</span>
 </span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a><span class="sd">    - $S$ is the total surface area [m²]</span>
 </span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a><span class="sd">    - $\alpha_{\text{mean}}$ is the mean absorption coefficient</span>
-</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a><span class="sd">    - $\text{attenuation}$ is the attenuation data</span>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a><span class="sd">    - $m$ is the attenuation coefficient [m⁻¹]</span>
 </span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>    <span class="n">alpha_mean</span> <span class="o">=</span> <span class="n">calc_alpha_mean</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">)</span>
 </span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a>    <span class="n">t60</span> <span class="o">=</span> <span class="n">constant</span> <span class="o">*</span> <span class="n">volume</span> <span class="o">/</span> <span class="p">(</span>
@@ -606,14 +606,14 @@ where:</p>
 </span><span id="t60_mellington-152"><a href="#t60_mellington-152"><span class="linenos">152</span></a><span class="sd">    Equation</span>
 </span><span id="t60_mellington-153"><a href="#t60_mellington-153"><span class="linenos">153</span></a><span class="sd">    --------</span>
 </span><span id="t60_mellington-154"><a href="#t60_mellington-154"><span class="linenos">154</span></a><span class="sd">    $$</span>
-</span><span id="t60_mellington-155"><a href="#t60_mellington-155"><span class="linenos">155</span></a><span class="sd">    T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot \text{attenuation} \cdot V}</span>
+</span><span id="t60_mellington-155"><a href="#t60_mellington-155"><span class="linenos">155</span></a><span class="sd">    T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot m \cdot V}</span>
 </span><span id="t60_mellington-156"><a href="#t60_mellington-156"><span class="linenos">156</span></a><span class="sd">    $$</span>
 </span><span id="t60_mellington-157"><a href="#t60_mellington-157"><span class="linenos">157</span></a><span class="sd">    where:</span>
 </span><span id="t60_mellington-158"><a href="#t60_mellington-158"><span class="linenos">158</span></a><span class="sd">    - $T_{60}$ is the reverberation time [s]</span>
 </span><span id="t60_mellington-159"><a href="#t60_mellington-159"><span class="linenos">159</span></a><span class="sd">    - $V$ is the volume of the room [m³]</span>
 </span><span id="t60_mellington-160"><a href="#t60_mellington-160"><span class="linenos">160</span></a><span class="sd">    - $S$ is the total surface area [m²]</span>
 </span><span id="t60_mellington-161"><a href="#t60_mellington-161"><span class="linenos">161</span></a><span class="sd">    - $\alpha_{\text{mean}}$ is the mean absorption coefficient</span>
-</span><span id="t60_mellington-162"><a href="#t60_mellington-162"><span class="linenos">162</span></a><span class="sd">    - $\text{attenuation}$ is the attenuation data</span>
+</span><span id="t60_mellington-162"><a href="#t60_mellington-162"><span class="linenos">162</span></a><span class="sd">    - $m$ is the attenuation coefficient [m⁻¹]</span>
 </span><span id="t60_mellington-163"><a href="#t60_mellington-163"><span class="linenos">163</span></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="t60_mellington-164"><a href="#t60_mellington-164"><span class="linenos">164</span></a>    <span class="n">alpha_mean</span> <span class="o">=</span> <span class="n">calc_alpha_mean</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">)</span>
 </span><span id="t60_mellington-165"><a href="#t60_mellington-165"><span class="linenos">165</span></a>    <span class="n">t60</span> <span class="o">=</span> <span class="n">constant</span> <span class="o">*</span> <span class="n">volume</span> <span class="o">/</span> <span class="p">(</span>
@@ -649,7 +649,7 @@ Mellington constant, default is 0.163.</li>
 <h6 id="equation">Equation</h6>
 
 <p>$$
-T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot \text{attenuation} \cdot V}
+T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot m \cdot V}
 $$
 where:</p>
 
@@ -658,7 +658,7 @@ where:</p>
 <li>$V$ is the volume of the room [m³]</li>
 <li>$S$ is the total surface area [m²]</li>
 <li>$\alpha_{\text{mean}}$ is the mean absorption coefficient</li>
-<li>$\text{attenuation}$ is the attenuation data</li>
+<li>$m$ is the attenuation coefficient [m⁻¹]</li>
 </ul>
 </div>
 

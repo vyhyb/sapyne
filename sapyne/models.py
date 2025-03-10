@@ -151,14 +151,14 @@ def t60_mellington(
     Equation
     --------
     $$
-    T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot \text{attenuation} \cdot V}
+    T_{60} = \frac{0.163 \cdot V}{-S \cdot \ln(1 - \alpha_{\text{mean}}) - 4 \cdot m \cdot V}
     $$
     where:
     - $T_{60}$ is the reverberation time [s]
     - $V$ is the volume of the room [m³]
     - $S$ is the total surface area [m²]
     - $\alpha_{\text{mean}}$ is the mean absorption coefficient
-    - $\text{attenuation}$ is the attenuation data
+    - $m$ is the attenuation coefficient [m⁻¹]
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum)
     t60 = constant * volume / (
