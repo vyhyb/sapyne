@@ -60,7 +60,7 @@ def t60_sabine(
     volume : float
         Volume of the room [m³].
     constant : float, optional
-        Sabine constant, default is 0.163.
+        A constant, default is 0.163.
 
     Returns
     -------
@@ -98,7 +98,7 @@ def t60_eyring(
     surface_sum : float
         Total surface area [m²].
     constant : float, optional
-        Eyring constant, default is 0.163.
+        A constant, default is 0.163.
 
     Returns
     -------
@@ -141,7 +141,7 @@ def t60_mellington(
     attenuation : Series
         Attenuation data for different frequencies.
     constant : float, optional
-        Mellington constant, default is 0.163.
+        A constant, default is 0.163.
 
     Returns
     -------
@@ -187,7 +187,7 @@ def t60_csn730525(
     attenuation : Series
         Attenuation data for different frequencies.
     constant : float, optional
-        CSN 730525 constant, default is 0.163.
+        A constant, default is 0.163.
 
     Returns
     -------

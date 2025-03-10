@@ -164,7 +164,7 @@ volume, surface area, and attenuation.</p>
 </span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a><span class="sd">    volume : float</span>
 </span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a><span class="sd">        Volume of the room [m³].</span>
 </span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">        Sabine constant, default is 0.163.</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>
 </span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a><span class="sd">    Returns</span>
 </span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a><span class="sd">    -------</span>
@@ -202,7 +202,7 @@ volume, surface area, and attenuation.</p>
 </span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="sd">    surface_sum : float</span>
 </span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a><span class="sd">        Total surface area [m²].</span>
 </span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a><span class="sd">        Eyring constant, default is 0.163.</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>
 </span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="sd">    Returns</span>
 </span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="sd">    -------</span>
@@ -245,7 +245,7 @@ volume, surface area, and attenuation.</p>
 </span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a><span class="sd">    attenuation : Series</span>
 </span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="sd">        Attenuation data for different frequencies.</span>
 </span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="sd">        Mellington constant, default is 0.163.</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>
 </span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a><span class="sd">    Returns</span>
 </span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a><span class="sd">    -------</span>
@@ -291,7 +291,7 @@ volume, surface area, and attenuation.</p>
 </span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a><span class="sd">    attenuation : Series</span>
 </span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a><span class="sd">        Attenuation data for different frequencies.</span>
 </span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a><span class="sd">        CSN 730525 constant, default is 0.163.</span>
+</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a>
 </span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a><span class="sd">    Returns</span>
 </span><span id="L-193"><a href="#L-193"><span class="linenos">193</span></a><span class="sd">    -------</span>
@@ -421,7 +421,7 @@ where:</p>
 </span><span id="t60_sabine-61"><a href="#t60_sabine-61"><span class="linenos">61</span></a><span class="sd">    volume : float</span>
 </span><span id="t60_sabine-62"><a href="#t60_sabine-62"><span class="linenos">62</span></a><span class="sd">        Volume of the room [m³].</span>
 </span><span id="t60_sabine-63"><a href="#t60_sabine-63"><span class="linenos">63</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="t60_sabine-64"><a href="#t60_sabine-64"><span class="linenos">64</span></a><span class="sd">        Sabine constant, default is 0.163.</span>
+</span><span id="t60_sabine-64"><a href="#t60_sabine-64"><span class="linenos">64</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="t60_sabine-65"><a href="#t60_sabine-65"><span class="linenos">65</span></a>
 </span><span id="t60_sabine-66"><a href="#t60_sabine-66"><span class="linenos">66</span></a><span class="sd">    Returns</span>
 </span><span id="t60_sabine-67"><a href="#t60_sabine-67"><span class="linenos">67</span></a><span class="sd">    -------</span>
@@ -453,7 +453,7 @@ Absorption data for different frequencies.</li>
 <li><strong>volume</strong> (float):
 Volume of the room [m³].</li>
 <li><strong>constant</strong> (float, optional):
-Sabine constant, default is 0.163.</li>
+A constant, default is 0.163.</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
@@ -507,7 +507,7 @@ where:</p>
 </span><span id="t60_eyring-99"><a href="#t60_eyring-99"><span class="linenos"> 99</span></a><span class="sd">    surface_sum : float</span>
 </span><span id="t60_eyring-100"><a href="#t60_eyring-100"><span class="linenos">100</span></a><span class="sd">        Total surface area [m²].</span>
 </span><span id="t60_eyring-101"><a href="#t60_eyring-101"><span class="linenos">101</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="t60_eyring-102"><a href="#t60_eyring-102"><span class="linenos">102</span></a><span class="sd">        Eyring constant, default is 0.163.</span>
+</span><span id="t60_eyring-102"><a href="#t60_eyring-102"><span class="linenos">102</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="t60_eyring-103"><a href="#t60_eyring-103"><span class="linenos">103</span></a>
 </span><span id="t60_eyring-104"><a href="#t60_eyring-104"><span class="linenos">104</span></a><span class="sd">    Returns</span>
 </span><span id="t60_eyring-105"><a href="#t60_eyring-105"><span class="linenos">105</span></a><span class="sd">    -------</span>
@@ -543,7 +543,7 @@ Volume of the room [m³].</li>
 <li><strong>surface_sum</strong> (float):
 Total surface area [m²].</li>
 <li><strong>constant</strong> (float, optional):
-Eyring constant, default is 0.163.</li>
+A constant, default is 0.163.</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
@@ -601,7 +601,7 @@ where:</p>
 </span><span id="t60_mellington-142"><a href="#t60_mellington-142"><span class="linenos">142</span></a><span class="sd">    attenuation : Series</span>
 </span><span id="t60_mellington-143"><a href="#t60_mellington-143"><span class="linenos">143</span></a><span class="sd">        Attenuation data for different frequencies.</span>
 </span><span id="t60_mellington-144"><a href="#t60_mellington-144"><span class="linenos">144</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="t60_mellington-145"><a href="#t60_mellington-145"><span class="linenos">145</span></a><span class="sd">        Mellington constant, default is 0.163.</span>
+</span><span id="t60_mellington-145"><a href="#t60_mellington-145"><span class="linenos">145</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="t60_mellington-146"><a href="#t60_mellington-146"><span class="linenos">146</span></a>
 </span><span id="t60_mellington-147"><a href="#t60_mellington-147"><span class="linenos">147</span></a><span class="sd">    Returns</span>
 </span><span id="t60_mellington-148"><a href="#t60_mellington-148"><span class="linenos">148</span></a><span class="sd">    -------</span>
@@ -642,7 +642,7 @@ Total surface area [m²].</li>
 <li><strong>attenuation</strong> (Series):
 Attenuation data for different frequencies.</li>
 <li><strong>constant</strong> (float, optional):
-Mellington constant, default is 0.163.</li>
+A constant, default is 0.163.</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
@@ -701,7 +701,7 @@ where:</p>
 </span><span id="t60_csn730525-188"><a href="#t60_csn730525-188"><span class="linenos">188</span></a><span class="sd">    attenuation : Series</span>
 </span><span id="t60_csn730525-189"><a href="#t60_csn730525-189"><span class="linenos">189</span></a><span class="sd">        Attenuation data for different frequencies.</span>
 </span><span id="t60_csn730525-190"><a href="#t60_csn730525-190"><span class="linenos">190</span></a><span class="sd">    constant : float, optional</span>
-</span><span id="t60_csn730525-191"><a href="#t60_csn730525-191"><span class="linenos">191</span></a><span class="sd">        CSN 730525 constant, default is 0.163.</span>
+</span><span id="t60_csn730525-191"><a href="#t60_csn730525-191"><span class="linenos">191</span></a><span class="sd">        A constant, default is 0.163.</span>
 </span><span id="t60_csn730525-192"><a href="#t60_csn730525-192"><span class="linenos">192</span></a>
 </span><span id="t60_csn730525-193"><a href="#t60_csn730525-193"><span class="linenos">193</span></a><span class="sd">    Returns</span>
 </span><span id="t60_csn730525-194"><a href="#t60_csn730525-194"><span class="linenos">194</span></a><span class="sd">    -------</span>
@@ -741,7 +741,7 @@ Total surface area [m²].</li>
 <li><strong>attenuation</strong> (Series):
 Attenuation data for different frequencies.</li>
 <li><strong>constant</strong> (float, optional):
-CSN 730525 constant, default is 0.163.</li>
+A constant, default is 0.163.</li>
 </ul>
 
 <h6 id="returns">Returns</h6>
