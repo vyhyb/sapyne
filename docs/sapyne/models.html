@@ -295,20 +295,22 @@ volume, surface area, and attenuation.</p>
 </span><span id="L-194"><a href="#L-194"><span class="linenos">194</span></a><span class="sd">    Series</span>
 </span><span id="L-195"><a href="#L-195"><span class="linenos">195</span></a><span class="sd">        T60 for each frequency [s].</span>
 </span><span id="L-196"><a href="#L-196"><span class="linenos">196</span></a>
-</span><span id="L-197"><a href="#L-197"><span class="linenos">197</span></a><span class="sd">    The method uses different formulas based on the mean absorption coefficient and volume:</span>
-</span><span id="L-198"><a href="#L-198"><span class="linenos">198</span></a><span class="sd">    - Sabine formula if $\alpha_{\text{mean}} &lt; 0.2$ and $V &lt; 2000$ m³</span>
-</span><span id="L-199"><a href="#L-199"><span class="linenos">199</span></a><span class="sd">    - Eyring formula if $0.2 &lt; \alpha_{\text{mean}} &lt; 0.8$ and $V &lt; 2000$ m³</span>
-</span><span id="L-200"><a href="#L-200"><span class="linenos">200</span></a><span class="sd">    - Mellington formula otherwise</span>
-</span><span id="L-201"><a href="#L-201"><span class="linenos">201</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-202"><a href="#L-202"><span class="linenos">202</span></a>    <span class="n">alpha_mean</span> <span class="o">=</span> <span class="n">calc_alpha_mean</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">)</span>
-</span><span id="L-203"><a href="#L-203"><span class="linenos">203</span></a>
-</span><span id="L-204"><a href="#L-204"><span class="linenos">204</span></a>    <span class="k">if</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
-</span><span id="L-205"><a href="#L-205"><span class="linenos">205</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_sabine</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</span><span id="L-206"><a href="#L-206"><span class="linenos">206</span></a>    <span class="k">elif</span> <span class="mf">0.8</span> <span class="o">&gt;</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
-</span><span id="L-207"><a href="#L-207"><span class="linenos">207</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_eyring</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</span><span id="L-208"><a href="#L-208"><span class="linenos">208</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="L-209"><a href="#L-209"><span class="linenos">209</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_mellington</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">attenuation</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</span><span id="L-210"><a href="#L-210"><span class="linenos">210</span></a>    <span class="k">return</span> <span class="n">t60</span>
+</span><span id="L-197"><a href="#L-197"><span class="linenos">197</span></a><span class="sd">    Notes</span>
+</span><span id="L-198"><a href="#L-198"><span class="linenos">198</span></a><span class="sd">    -----</span>
+</span><span id="L-199"><a href="#L-199"><span class="linenos">199</span></a><span class="sd">    The method uses different formulas based on the mean absorption coefficient and volume:</span>
+</span><span id="L-200"><a href="#L-200"><span class="linenos">200</span></a><span class="sd">    - Sabine formula if $\alpha_{\text{mean}} &lt; 0.2$ and $V &lt; 2000$ m³</span>
+</span><span id="L-201"><a href="#L-201"><span class="linenos">201</span></a><span class="sd">    - Eyring formula if $0.2 &lt; \alpha_{\text{mean}} &lt; 0.8$ and $V &lt; 2000$ m³</span>
+</span><span id="L-202"><a href="#L-202"><span class="linenos">202</span></a><span class="sd">    - Mellington formula otherwise</span>
+</span><span id="L-203"><a href="#L-203"><span class="linenos">203</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-204"><a href="#L-204"><span class="linenos">204</span></a>    <span class="n">alpha_mean</span> <span class="o">=</span> <span class="n">calc_alpha_mean</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">)</span>
+</span><span id="L-205"><a href="#L-205"><span class="linenos">205</span></a>
+</span><span id="L-206"><a href="#L-206"><span class="linenos">206</span></a>    <span class="k">if</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
+</span><span id="L-207"><a href="#L-207"><span class="linenos">207</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_sabine</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</span><span id="L-208"><a href="#L-208"><span class="linenos">208</span></a>    <span class="k">elif</span> <span class="mf">0.8</span> <span class="o">&gt;</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
+</span><span id="L-209"><a href="#L-209"><span class="linenos">209</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_eyring</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</span><span id="L-210"><a href="#L-210"><span class="linenos">210</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="L-211"><a href="#L-211"><span class="linenos">211</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_mellington</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">attenuation</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</span><span id="L-212"><a href="#L-212"><span class="linenos">212</span></a>    <span class="k">return</span> <span class="n">t60</span>
 </span></pre></div>
 
 
@@ -703,20 +705,22 @@ where:</p>
 </span><span id="t60_csn730525-195"><a href="#t60_csn730525-195"><span class="linenos">195</span></a><span class="sd">    Series</span>
 </span><span id="t60_csn730525-196"><a href="#t60_csn730525-196"><span class="linenos">196</span></a><span class="sd">        T60 for each frequency [s].</span>
 </span><span id="t60_csn730525-197"><a href="#t60_csn730525-197"><span class="linenos">197</span></a>
-</span><span id="t60_csn730525-198"><a href="#t60_csn730525-198"><span class="linenos">198</span></a><span class="sd">    The method uses different formulas based on the mean absorption coefficient and volume:</span>
-</span><span id="t60_csn730525-199"><a href="#t60_csn730525-199"><span class="linenos">199</span></a><span class="sd">    - Sabine formula if $\alpha_{\text{mean}} &lt; 0.2$ and $V &lt; 2000$ m³</span>
-</span><span id="t60_csn730525-200"><a href="#t60_csn730525-200"><span class="linenos">200</span></a><span class="sd">    - Eyring formula if $0.2 &lt; \alpha_{\text{mean}} &lt; 0.8$ and $V &lt; 2000$ m³</span>
-</span><span id="t60_csn730525-201"><a href="#t60_csn730525-201"><span class="linenos">201</span></a><span class="sd">    - Mellington formula otherwise</span>
-</span><span id="t60_csn730525-202"><a href="#t60_csn730525-202"><span class="linenos">202</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="t60_csn730525-203"><a href="#t60_csn730525-203"><span class="linenos">203</span></a>    <span class="n">alpha_mean</span> <span class="o">=</span> <span class="n">calc_alpha_mean</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">)</span>
-</span><span id="t60_csn730525-204"><a href="#t60_csn730525-204"><span class="linenos">204</span></a>
-</span><span id="t60_csn730525-205"><a href="#t60_csn730525-205"><span class="linenos">205</span></a>    <span class="k">if</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
-</span><span id="t60_csn730525-206"><a href="#t60_csn730525-206"><span class="linenos">206</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_sabine</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</span><span id="t60_csn730525-207"><a href="#t60_csn730525-207"><span class="linenos">207</span></a>    <span class="k">elif</span> <span class="mf">0.8</span> <span class="o">&gt;</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
-</span><span id="t60_csn730525-208"><a href="#t60_csn730525-208"><span class="linenos">208</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_eyring</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</span><span id="t60_csn730525-209"><a href="#t60_csn730525-209"><span class="linenos">209</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="t60_csn730525-210"><a href="#t60_csn730525-210"><span class="linenos">210</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_mellington</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">attenuation</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</span><span id="t60_csn730525-211"><a href="#t60_csn730525-211"><span class="linenos">211</span></a>    <span class="k">return</span> <span class="n">t60</span>
+</span><span id="t60_csn730525-198"><a href="#t60_csn730525-198"><span class="linenos">198</span></a><span class="sd">    Notes</span>
+</span><span id="t60_csn730525-199"><a href="#t60_csn730525-199"><span class="linenos">199</span></a><span class="sd">    -----</span>
+</span><span id="t60_csn730525-200"><a href="#t60_csn730525-200"><span class="linenos">200</span></a><span class="sd">    The method uses different formulas based on the mean absorption coefficient and volume:</span>
+</span><span id="t60_csn730525-201"><a href="#t60_csn730525-201"><span class="linenos">201</span></a><span class="sd">    - Sabine formula if $\alpha_{\text{mean}} &lt; 0.2$ and $V &lt; 2000$ m³</span>
+</span><span id="t60_csn730525-202"><a href="#t60_csn730525-202"><span class="linenos">202</span></a><span class="sd">    - Eyring formula if $0.2 &lt; \alpha_{\text{mean}} &lt; 0.8$ and $V &lt; 2000$ m³</span>
+</span><span id="t60_csn730525-203"><a href="#t60_csn730525-203"><span class="linenos">203</span></a><span class="sd">    - Mellington formula otherwise</span>
+</span><span id="t60_csn730525-204"><a href="#t60_csn730525-204"><span class="linenos">204</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="t60_csn730525-205"><a href="#t60_csn730525-205"><span class="linenos">205</span></a>    <span class="n">alpha_mean</span> <span class="o">=</span> <span class="n">calc_alpha_mean</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">)</span>
+</span><span id="t60_csn730525-206"><a href="#t60_csn730525-206"><span class="linenos">206</span></a>
+</span><span id="t60_csn730525-207"><a href="#t60_csn730525-207"><span class="linenos">207</span></a>    <span class="k">if</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
+</span><span id="t60_csn730525-208"><a href="#t60_csn730525-208"><span class="linenos">208</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_sabine</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</span><span id="t60_csn730525-209"><a href="#t60_csn730525-209"><span class="linenos">209</span></a>    <span class="k">elif</span> <span class="mf">0.8</span> <span class="o">&gt;</span> <span class="n">alpha_mean</span><span class="o">.</span><span class="n">any</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">volume</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">:</span>
+</span><span id="t60_csn730525-210"><a href="#t60_csn730525-210"><span class="linenos">210</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_eyring</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</span><span id="t60_csn730525-211"><a href="#t60_csn730525-211"><span class="linenos">211</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="t60_csn730525-212"><a href="#t60_csn730525-212"><span class="linenos">212</span></a>        <span class="n">t60</span> <span class="o">=</span> <span class="n">t60_mellington</span><span class="p">(</span><span class="n">absorption</span><span class="p">,</span> <span class="n">volume</span><span class="p">,</span> <span class="n">surface_sum</span><span class="p">,</span> <span class="n">attenuation</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
+</span><span id="t60_csn730525-213"><a href="#t60_csn730525-213"><span class="linenos">213</span></a>    <span class="k">return</span> <span class="n">t60</span>
 </span></pre></div>
 
 
@@ -741,10 +745,16 @@ CSN 730525 constant, default is 0.163.</li>
 
 <ul>
 <li><strong>Series</strong>: T60 for each frequency [s].</li>
-<li><strong>The method uses different formulas based on the mean absorption coefficient and volume:</strong></li>
-<li><strong>- Sabine formula if $\alpha_{\text{mean}} &lt; 0.2$ and $V &lt; 2000$ m³</strong></li>
-<li><strong>- Eyring formula if $0.2 &lt; \alpha_{\text{mean}} &lt; 0.8$ and $V &lt; 2000$ m³</strong></li>
-<li><strong>- Mellington formula otherwise</strong></li>
+</ul>
+
+<h6 id="notes">Notes</h6>
+
+<p>The method uses different formulas based on the mean absorption coefficient and volume:</p>
+
+<ul>
+<li>Sabine formula if $\alpha_{\text{mean}} &lt; 0.2$ and $V &lt; 2000$ m³</li>
+<li>Eyring formula if $0.2 &lt; \alpha_{\text{mean}} &lt; 0.8$ and $V &lt; 2000$ m³</li>
+<li>Mellington formula otherwise</li>
 </ul>
 </div>
 

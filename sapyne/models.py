@@ -194,6 +194,8 @@ def t60_csn730525(
     Series
         T60 for each frequency [s].
 
+    Notes
+    -----
     The method uses different formulas based on the mean absorption coefficient and volume:
     - Sabine formula if $\alpha_{\text{mean}} < 0.2$ and $V < 2000$ m³
     - Eyring formula if $0.2 < \alpha_{\text{mean}} < 0.8$ and $V < 2000$ m³
