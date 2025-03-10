@@ -4,11 +4,11 @@ Sabine, Eyring, Mellington, and CSN 730525. The calculations are based on absorp
 volume, surface area, and attenuation.
 
 Functions:
-    - calc_alpha_mean: Calculate the mean absorption coefficient.
-    - t60_sabine: Calculate T60 using the Sabine formula.
-    - t60_eyring: Calculate T60 using the Eyring formula.
-    - t60_mellington: Calculate T60 using the Mellington formula.
-    - t60_csn730525: Calculate T60 using the CSN 730525 standard.
+- calc_alpha_mean: Calculate the mean absorption coefficient.
+- t60_sabine: Calculate T60 using the Sabine formula.
+- t60_eyring: Calculate T60 using the Eyring formula.
+- t60_mellington: Calculate T60 using the Mellington formula.
+- t60_csn730525: Calculate T60 using the CSN 730525 standard.
 """
 
 from pandas import DataFrame, Series
