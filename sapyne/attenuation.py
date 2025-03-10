@@ -4,7 +4,7 @@ import numpy as np
 from pandas import Series
 
 def attenuation_coefficient(
-    frequency: float|np.ndarray|Series,
+    frequency: float | np.ndarray | Series,
     relative_humidity: float,
     temperature: float,
     pressure: float,
