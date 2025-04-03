@@ -120,7 +120,8 @@ def t60_eyring(
     - $\alpha_{\text{mean}}$ is the mean absorption coefficient
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
-    t60 = constant * volume / (- surface_sum * np.log(1 - alpha_mean))
+    print("alpha_mean", alpha_mean)
+    t60 = constant * volume / (- surface_sum * np.log(1 - np.array(alpha_mean, dtype=float)))
     return t60
 
 def t60_mellington(
@@ -166,7 +167,7 @@ def t60_mellington(
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
     t60 = constant * volume / (
-            - surface_sum * np.log(1 - alpha_mean) - 4 * attenuation * volume
+            - surface_sum * np.log(1 - alpha_mean) + 4 * attenuation * volume
     )
     return t60
 
@@ -208,10 +209,14 @@ def t60_csn730525(
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
 
-    if alpha_mean.any() < 0.2 and volume < 2000:
-        t60 = t60_sabine(absorption, volume, constant, bands)
-    elif 0.8 > alpha_mean.any() > 0.2 and volume < 2000:
+    if np.any(alpha_mean<0.8) and np.any(alpha_mean>0.2) and volume < 2000:
         t60 = t60_eyring(absorption, volume, surface_sum, constant)
+        print("Using Eyring formula")
+    elif np.any(alpha_mean<0.2) and volume < 2000:
+        t60 = t60_sabine(absorption, volume, constant, bands)
+        print("Using Sabine formula")
     else:
         t60 = t60_mellington(absorption, volume, surface_sum, attenuation, constant)
+
+        print("Using Mellington formula")
     return t60

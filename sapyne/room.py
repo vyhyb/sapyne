@@ -76,6 +76,7 @@ class Room:
         self.volume = volume
         self.temperature = temperature
         self.humidity = humidity
+        self.pressure = pressure
         self.surfaces = surfaces
         self.objects = objects
         self.absorption = None
@@ -87,7 +88,8 @@ class Room:
             library: DataFrame, 
             material_id: str, 
             area: float, 
-            subtract_area_from=None
+            subtract_area_from=None,
+            renamed_surface=None
             ):
         """Add a surface to the room.
 
@@ -115,11 +117,13 @@ class Room:
         
         material.loc[:, "Area"] = area
         if subtract_area_from is not None:
-            subtracted_surface = self.surfaces[self.surfaces["ID"] == subtract_area_from]
+            subtracted_surface = self.surfaces[self.surfaces["Name"] == subtract_area_from]
             if subtracted_surface.empty:
                 raise ValueError("Subtracted surface ID not found in the room")
-            subtracted_surface.loc[:, "Area"] = subtracted_surface.loc[:, "Area"] - area
-            self.surfaces.loc[:, self.surfaces["ID"] == subtract_area_from] = subtracted_surface
+            self.surfaces.loc[self.surfaces["Name"] == subtract_area_from, "Area"] -= area
+
+        if renamed_surface is not None:
+            material.loc[:, "Name"] = renamed_surface
 
         self.surfaces = pd.concat([self.surfaces, material])
 
@@ -156,9 +160,9 @@ class Room:
         # does a complete recalculation. TODO think of a more efficient way.
         absorption_surfaces = self.surfaces[IDENTIFIERS]
         absorption_objects = self.objects[IDENTIFIERS]
-        print(self.surfaces.loc[:, BANDS])
-        print(self.surfaces.loc[:, AREA])
-        print(self.surfaces.loc[:, BANDS].mul(self.surfaces.loc[:, AREA], axis=0))
+        # print(self.surfaces.loc[:, BANDS])
+        # print(self.surfaces.loc[:, AREA])
+        # print(self.surfaces.loc[:, BANDS].mul(self.surfaces.loc[:, AREA], axis=0))
         absorption_surfaces.loc[:, BANDS] = self.surfaces.loc[:, BANDS].mul(self.surfaces.loc[:, AREA], axis=0)
         absorption_objects.loc[:, BANDS] = self.objects.loc[:, BANDS].mul(self.objects.loc[:, AMOUNT], axis=0)
         

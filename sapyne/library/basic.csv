@@ -1,0 +1,13 @@
+ID,Name,125,250,500,1000,2000,4000
+STE001,"Beton, omítnuté cihly",0.01,0.01,0.01,0.02,0.02,0.03
+STE002,"Zdivo cihelné spárované",0.03,0.03,0.03,0.04,0.05,0.06
+
+POD001,"Tvrdé podlahové krytiny na těžké podlaze",0.02,0.03,0.04,0.05,0.05,0.06
+POD002,"Měkká podlahová krytina na těžké podlaze (<= 5mm)",0.02,0.03,0.06,0.15,0.3,0.4
+POD003,"Měkká podlahová krytina na těžké podlaze (> 10mm)",0.04,0.08,0.15,0.3,0.45,0.55
+
+DVE001,"Dveře (dřevěné)",0.14,0.1,0.08,0.08,0.08,0.08
+
+OKN001,"Okna, prosklená fasáda",0.12,0.08,0.05,0.04,0.03,0.02
+
+
