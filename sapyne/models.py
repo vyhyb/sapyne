@@ -121,6 +121,8 @@ def t60_eyring(
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
     print("alpha_mean", alpha_mean)
+    print("surface_sum", surface_sum)
+    print(np.log(1 - np.array(alpha_mean, dtype=float)))
     t60 = constant * volume / (- surface_sum * np.log(1 - np.array(alpha_mean, dtype=float)))
     return t60
 
@@ -208,7 +210,9 @@ def t60_csn730525(
     - Mellington formula otherwise
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
-
+    print("alpha_mean", alpha_mean)
+    print("surface_sum", surface_sum)
+    print(np.log(1 - np.array(alpha_mean, dtype=float)))
     if np.any(alpha_mean<0.8) and np.any(alpha_mean>0.2) and volume < 2000:
         t60 = t60_eyring(absorption, volume, surface_sum, constant)
         print("Using Eyring formula")
