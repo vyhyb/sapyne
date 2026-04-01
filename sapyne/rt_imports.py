@@ -15,10 +15,10 @@ Notes
 -----
 The DiracReverberationData class is used to import reverberation data
 from a txt file exported from Dirac, which typically contains more than
-one measurement. 
+one measurement.
 
 The REWReverberationData class is used to import reverberation data from
-a txt file exported from REW. Such measurement is typically a single 
+a txt file exported from REW. Such measurement is typically a single
 measurement containing various quantities. In order to merge multiple
 measurements of one quantity, the merge_rew_dfs function is used.
 
@@ -31,10 +31,11 @@ import pandas as pd
 import numpy as np
 import re
 
+
 class DiracReverberationData:
     """Representation of Dirac exported reverberation data.
-    
-    The object contains the data from the txt file exported from Dirac 
+
+    The object contains the data from the txt file exported from Dirac
     in a form of a pandas DataFrame.
 
     Structure:
@@ -42,11 +43,12 @@ class DiracReverberationData:
     path : str
         Path to the data file.
     df : pandas.DataFrame
-        Reverberation data in a DataFrame format. Columns are the 
+        Reverberation data in a DataFrame format. Columns are the
         frequency bands and the rows are the individual measurements.
     cols : np.ndarray
         Frequency bands of the data.
     """
+
     def __init__(self, path):
         """load the data from the given path.
 
@@ -60,27 +62,39 @@ class DiracReverberationData:
 
     def load_data(self):
         """Load the data from the file."""
-        self.df = pd.read_csv(self.path, sep='\t', decimal=',')
+        self.df = pd.read_csv(self.path, sep="\t", decimal=",")
         # drop the first row of the data
         self.df = self.df.drop(0)
         # drop the row having "Number of Measurements" in the first column and the following rows
-        row_idx = self.df[self.df.iloc[:,0].str.strip() == "Number of Measurements"].index
-        self.df = self.df.iloc[:row_idx[0]-1]
+        row_idx = self.df[
+            self.df.iloc[:, 0].str.strip() == "Number of Measurements"
+        ].index
+        self.df = self.df.iloc[: row_idx[0] - 1]
         self.df = self.df.drop(columns=self.df.columns[0])
         self.cols = np.array(self.df.columns).astype(float)
 
+
 REW_QUANTITIES = [
-    "EDT (s)", "T20 (s)", "T30 (s)", "Topt (s)", 
-    "ToptStart (dB)", "ToptEnd (dB)", "T60M (s)", "C50 (dB)", "C80 (dB)", 
-    "D50 (%)", "TS (s)"
+    "EDT (s)",
+    "T20 (s)",
+    "T30 (s)",
+    "Topt (s)",
+    "ToptStart (dB)",
+    "ToptEnd (dB)",
+    "T60M (s)",
+    "C50 (dB)",
+    "C80 (dB)",
+    "D50 (%)",
+    "TS (s)",
 ]
 
+
 class REWReverberationData:
-    """Representation of REW reverberation data file.
-    """
-    def __init__(self, path, bands="octave"):
+    """Representation of REW reverberation data file."""
+
+    def __init__(self, path, bands="octave", encoding="utf-8"):
         """
-        Initialize the REWReverberationData by importing the data from 
+        Initialize the REWReverberationData by importing the data from
         the specified text file previously exported from REW.
 
         Parameters
@@ -98,7 +112,7 @@ class REWReverberationData:
             filt_str = "1/3"
 
         pattern = re.compile(filt_str)
-        with open(path) as f:
+        with open(path, encoding=encoding) as f:
             valid_lines = []
             for lineno, line in enumerate(f):
                 matches = pattern.finditer(line)
@@ -107,35 +121,56 @@ class REWReverberationData:
                     if line[0].isdigit():
                         valid_lines.append(lineno)
 
+        # remove non-successive lines
+        valid_lines = [
+            valid_lines[i]
+            for i in range(len(valid_lines))
+            if i == 0 or valid_lines[i] - valid_lines[i - 1] == 1
+        ]
+
         try:
             assert len(valid_lines) > 0
         except AssertionError:
-            raise ValueError("No valid lines found in the file for the specified band resolution. ({})".format(filt_str))
+            raise ValueError(
+                "No valid lines found in the file for the specified band resolution. ({})".format(
+                    filt_str
+                )
+            )
 
         pattern = re.compile("Format is ")
-        with open(path) as f:
+        with open(path, encoding=encoding) as f:
             for lineno, line in enumerate(f):
                 matches = pattern.finditer(line)
                 for m in matches:
                     cols = line.strip("\n")
-                    cols = r"'" + cols.replace(", ", r"', '")[len("Format is "):] + r"'"
+                    cols = (
+                        r"'" + cols.replace(", ", r"', '")[len("Format is ") :] + r"'"
+                    )
                     cols = list(eval(cols))
-        
-        with open(path) as f:
-            self.metadata = ''.join([next(f) for _ in range(10)])
-        
+
+        with open(path, encoding=encoding) as f:
+            self.metadata = "".join([next(f) for _ in range(10)])
+
         for idx, c in enumerate(cols):
-            if c == 'r':
-                cols[idx] += "_"+cols[idx-1]
-        
+            if c == "r":
+                cols[idx] += "_" + cols[idx - 1]
+
         self.cols = cols
-        
-        self.df = pd.read_csv(path, skiprows=valid_lines[0]-1, names=cols, nrows=valid_lines[-1]-valid_lines[0]+1)
+
+        self.df = pd.read_csv(
+            path,
+            skiprows=valid_lines[0] - 1,
+            names=cols,
+            nrows=valid_lines[-1] - valid_lines[0] + 1,
+            encoding=encoding,
+        )
+
 
 def merge_rew_dfs(
-        data: List[REWReverberationData],
-        quantity: str = "T20 (s)"
-    ) -> pd.DataFrame:
+    data: List[REWReverberationData],
+    quantity: str = "T20 (s)",
+    freqs: str = "freq (Hz)",
+) -> pd.DataFrame:
     """Merge the REW dataframes for the specified quantity.
     The possible quantities are listed in the REW_QUANTITIES list.
 
@@ -149,17 +184,21 @@ def merge_rew_dfs(
     Returns
     -------
     pd.DataFrame
-        Merged DataFrame with swaped columns and rows. 
+        Merged DataFrame with swaped columns and rows.
         (rows are the measurements, columns are the Frequency bands)
     """
     try:
         assert quantity in REW_QUANTITIES
     except AssertionError:
-        raise ValueError("The quantity specified is not valid. ({}), valid quantities are: {}".format(quantity, REW_QUANTITIES))
+        raise ValueError(
+            "The quantity specified is not valid. ({}), valid quantities are: {}".format(
+                quantity, REW_QUANTITIES
+            )
+        )
     data_dict = {}
     for d in data:
         data_dict[d.path] = d.df[quantity]
     df = pd.DataFrame(data_dict)
     df = df.T
-    df.columns = d.df["Frequency"]
+    df.columns = d.df[freqs]
     return df

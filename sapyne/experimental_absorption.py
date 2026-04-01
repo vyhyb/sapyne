@@ -1,12 +1,21 @@
+"""Experimental absorption coefficient utilities.
+
+This module contains helper functions for converting reverberation-time based
+measurements into equivalent absorption area and ISO 354 absorption
+coefficients.
+"""
+
 from typing import Tuple
+
 import numpy as np
 
+
 def eq_absorption_area(
-    volume: float, 
-    rt_60: float|np.ndarray, 
-    attenuation_coef: float|np.ndarray = 0, 
-    speed_sound: float = 343
-    ):
+    volume: float,
+    rt_60: float | np.ndarray,
+    attenuation_coef: float | np.ndarray = 0,
+    speed_sound: float = 343,
+):
     r"""
     Returns the equivalent absorption area based on the given parameters.
 
@@ -38,13 +47,14 @@ def eq_absorption_area(
     - $m$ is the sound attenuation coefficient in air [m⁻¹]
     - $c$ is the speed of sound in air [m/s]
     """
-    return 55.3*volume/speed_sound/rt_60 - 4*attenuation_coef*volume
+    return 55.3 * volume / speed_sound / rt_60 - 4 * attenuation_coef * volume
+
 
 def absorption_coeff_ISO_354_mean(
-        absorption_sample: np.ndarray, 
-        absorption_reference: np.ndarray, 
-        specimen_area: float
-    ) -> np.ndarray:
+    absorption_sample: np.ndarray,
+    absorption_reference: np.ndarray,
+    specimen_area: float,
+) -> np.ndarray:
     r"""Calculate the absorption coefficient using ISO 354 standard.
 
     Parameters
@@ -54,7 +64,7 @@ def absorption_coeff_ISO_354_mean(
     absorption_reference : np.ndarray
         Total absorption of the empty room. [m²]
     specimen_area : float
-        Area of the sample specimen. [m²]    
+        Area of the sample specimen. [m²]
 
     Returns
     -------
@@ -74,12 +84,13 @@ def absorption_coeff_ISO_354_mean(
     """
     return (absorption_sample - absorption_reference) / specimen_area
 
+
 def absorption_coeff_ISO_354_std(
-        absorption_sample_std: np.ndarray,
-        absorption_reference_std: np.ndarray,
-        specimen_area: float
-    ) -> np.ndarray:
-    r"""Calculate the absorption coefficient standard deviation using 
+    absorption_sample_std: np.ndarray,
+    absorption_reference_std: np.ndarray,
+    specimen_area: float,
+) -> np.ndarray:
+    r"""Calculate the absorption coefficient standard deviation using
     error propagation of the total absorption.
 
     Parameters
@@ -95,7 +106,7 @@ def absorption_coeff_ISO_354_std(
     Returns
     -------
     np.ndarray
-        Absorption coefficient standard deviation calculated using 
+        Absorption coefficient standard deviation calculated using
         standard error propagation. [dimensionless]
 
     Notes
@@ -109,17 +120,18 @@ def absorption_coeff_ISO_354_std(
     - $\sigma_{A_r}$ is the standard deviation of the total absorption of the empty room [m²]
     - $S$ is the area of the sample specimen [m²]
     """
-    return np.sqrt(
-        absorption_sample_std**2 + absorption_reference_std**2
-    ) / specimen_area
+    return (
+        np.sqrt(absorption_sample_std**2 + absorption_reference_std**2) / specimen_area
+    )
+
 
 def absorption_coeff_ISO_354(
-        absorption_sample: np.ndarray, 
-        absorption_reference: np.ndarray, 
-        absorption_sample_std: np.ndarray,
-        absorption_reference_std: np.ndarray,
-        specimen_area: float
-    ) -> Tuple[np.ndarray]:
+    absorption_sample: np.ndarray,
+    absorption_reference: np.ndarray,
+    absorption_sample_std: np.ndarray,
+    absorption_reference_std: np.ndarray,
+    specimen_area: float,
+) -> Tuple[np.ndarray]:
     r"""Calculate the absorption coefficient using ISO 354 standard.
 
     Parameters
@@ -133,7 +145,7 @@ def absorption_coeff_ISO_354(
     absorption_reference_std : np.ndarray
         Standard deviation of the total absorption of the empty room. [m²]
     specimen_area : float
-        Area of the sample specimen. [m²]    
+        Area of the sample specimen. [m²]
 
     Returns
     -------
@@ -159,13 +171,9 @@ def absorption_coeff_ISO_354(
     - $S$ is the area of the sample specimen [m²]
     """
     absorption_coeff = absorption_coeff_ISO_354_mean(
-        absorption_sample, 
-        absorption_reference, 
-        specimen_area
+        absorption_sample, absorption_reference, specimen_area
     )
     absorption_coeff_std = absorption_coeff_ISO_354_std(
-        absorption_sample_std,
-        absorption_reference_std,
-        specimen_area
+        absorption_sample_std, absorption_reference_std, specimen_area
     )
     return absorption_coeff, absorption_coeff_std

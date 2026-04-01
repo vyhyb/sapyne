@@ -10,14 +10,14 @@ Functions:
 - `t60_mellington`: Calculate T60 using the Mellington formula.
 - `t60_csn730525`: Calculate T60 using the CSN 730525 standard.
 """
+
 from .room import BANDS
 from pandas import DataFrame, Series
 import numpy as np
 
+
 def calc_alpha_mean(
-        absorption: DataFrame,
-        surface_sum: float,
-        bands: list = BANDS
+    absorption: DataFrame, surface_sum: float, bands: list = BANDS
 ) -> Series:
     r"""
     Calculate the mean absorption coefficient.
@@ -46,11 +46,9 @@ def calc_alpha_mean(
     """
     return absorption.loc[:, bands].sum() / surface_sum
 
+
 def t60_sabine(
-        absorption: DataFrame,
-        volume: float,
-        constant: float = 0.163,
-        bands: list = BANDS
+    absorption: DataFrame, volume: float, constant: float = 0.163, bands: list = BANDS
 ) -> Series:
     r"""
     Calculate T60 using the Sabine formula.
@@ -82,12 +80,13 @@ def t60_sabine(
     t60 = constant * volume / absorption.loc[:, bands].sum()
     return t60
 
+
 def t60_eyring(
-        absorption: DataFrame,
-        volume: float,
-        surface_sum: float,
-        constant: float = 0.163,
-        bands: list = BANDS
+    absorption: DataFrame,
+    volume: float,
+    surface_sum: float,
+    constant: float = 0.163,
+    bands: list = BANDS,
 ) -> Series:
     r"""
     Calculate T60 using the Eyring formula.
@@ -120,19 +119,25 @@ def t60_eyring(
     - $\alpha_{\text{mean}}$ is the mean absorption coefficient
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
-    print("alpha_mean", alpha_mean)
-    print("surface_sum", surface_sum)
-    print(np.log(1 - np.array(alpha_mean, dtype=float)))
-    t60 = constant * volume / (- surface_sum * np.log(1 - np.array(alpha_mean, dtype=float)))
+    # print("alpha_mean", alpha_mean)
+    # print("surface_sum", surface_sum)
+    # print(np.log(1 - np.array(alpha_mean, dtype=float)))
+    t60 = (
+        constant
+        * volume
+        / (-surface_sum * np.log(1 - np.array(alpha_mean, dtype=float)))
+    )
+    t60 = Series(t60, index=bands)
     return t60
 
+
 def t60_mellington(
-        absorption: DataFrame,
-        volume: float,
-        surface_sum: float,
-        attenuation: Series,
-        constant: float = 0.163,
-        bands: list = BANDS
+    absorption: DataFrame,
+    volume: float,
+    surface_sum: float,
+    attenuation: Series,
+    constant: float = 0.163,
+    bands: list = BANDS,
 ) -> Series:
     r"""
     Calculate T60 using the Mellington formula.
@@ -168,18 +173,22 @@ def t60_mellington(
     - $m$ is the attenuation coefficient [m⁻¹]
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
-    t60 = constant * volume / (
-            - surface_sum * np.log(1 - alpha_mean) + 4 * attenuation * volume
+    t60 = (
+        constant
+        * volume
+        / (-surface_sum * np.log(1 - alpha_mean) + 4 * attenuation * volume)
     )
+    t60 = Series(t60, index=bands)
     return t60
 
+
 def t60_csn730525(
-        absorption: DataFrame,
-        volume: float,
-        surface_sum: float,
-        attenuation: Series,
-        constant: float = 0.163,
-        bands: list = BANDS
+    absorption: DataFrame,
+    volume: float,
+    surface_sum: float,
+    attenuation: Series,
+    constant: float = 0.163,
+    bands: list = BANDS,
 ) -> Series:
     r"""
     Calculate T60 using the CSN 730525 standard.
@@ -210,13 +219,13 @@ def t60_csn730525(
     - Mellington formula otherwise
     """
     alpha_mean = calc_alpha_mean(absorption, surface_sum, bands)
-    print("alpha_mean", alpha_mean)
-    print("surface_sum", surface_sum)
-    print(np.log(1 - np.array(alpha_mean, dtype=float)))
-    if np.any(alpha_mean<0.8) and np.any(alpha_mean>0.2) and volume < 2000:
+    # print("alpha_mean", alpha_mean)
+    # print("surface_sum", surface_sum)
+    # print(np.log(1 - np.array(alpha_mean, dtype=float)))
+    if np.any(alpha_mean < 0.8) and np.any(alpha_mean > 0.2) and volume < 2000:
         t60 = t60_eyring(absorption, volume, surface_sum, constant)
         print("Using Eyring formula")
-    elif np.any(alpha_mean<0.2) and volume < 2000:
+    elif np.any(alpha_mean < 0.2) and volume < 2000:
         t60 = t60_sabine(absorption, volume, constant, bands)
         print("Using Sabine formula")
     else:
