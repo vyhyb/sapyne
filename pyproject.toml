@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sapyne"
+version = "0.1.0"
+description = "Room acoustics calculations according to CSN 73 0527"
+readme = "README.md"
+license = { file = "LICENSE.md" }
+requires-python = ">=3.9"
+authors = [
+    { name = "David Jun" },
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "jinja2",
+]
+
+[project.optional-dependencies]
+scraper = [
+    "beautifulsoup4",
+    "playwright",
+]
+notebook = [
+    "ipython",
+    "matplotlib",
+]
+
+[project.urls]
+Homepage = "https://github.com/vyhyb/sapyne"
+Documentation = "https://vyhyb.github.io/sapyne/"
+
+[tool.setuptools.packages.find]
+include = ["sapyne", "sapyne.*"]
+
+[tool.setuptools.package-data]
+sapyne = [
+    "library/*.csv",
+    "tex_templates/*.tex.j2",
+]

@@ -1,0 +1,12 @@
+numpy
+pandas
+scipy
+jinja2
+
+[notebook]
+ipython
+matplotlib
+
+[scraper]
+beautifulsoup4
+playwright
