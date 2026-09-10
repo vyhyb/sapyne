@@ -1,0 +1,15 @@
+\begin{table}[H]
+	\centering
+	\caption{ {{- caption -}} }
+	\vspace{ {{- caption_spacing -}} }
+	\label{ {{- label -}} }
+	\begin{tabularx}{\textwidth}{ {{- column_format -}} }
+		\toprule
+		{{ '\t' }}{% for h in headers %}{{ h }}{% if not loop.last %} & {% endif %}{% endfor %} \\
+		\midrule
+		{% for row in rows %}
+		{{ '\t' }}{% for c in row %}{{ c }}{% if not loop.last %} & {% endif %}{% endfor %} \\
+		{% endfor %}
+		\bottomrule
+	\end{tabularx}
+\end{table}

@@ -16,6 +16,7 @@ def model_calibration(
     room: Room,
     t60_experiment_arr: np.ndarray,
     attenuation_arr: np.ndarray,
+    surface_sum: float,
 ):
     """Calibrate a room model against measured ``T60`` values.
 
@@ -27,6 +28,8 @@ def model_calibration(
         Measured reverberation times for bands in ``BANDS``.
     attenuation_arr : np.ndarray
         Air attenuation coefficients for bands in ``BANDS``.
+    surface_sum : float
+        Total geometric surface area of the room [m²].
 
     Returns
     -------
@@ -65,7 +68,6 @@ def model_calibration(
     room.objects = pd.concat(
         [room.objects, object_series.to_frame().T], ignore_index=True
     )
-    surface_sum = room.surfaces.loc[:, AREA].sum()
 
     # run the optimization band by band
     result = []

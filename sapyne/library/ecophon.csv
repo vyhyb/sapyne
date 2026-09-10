@@ -2,3 +2,69 @@ ID,Name,125,250,500,1000,2000,4000
 ECP001,Ecophon Akusto Wall C Akutex FT,0.20,0.70,1.00,1.00,1.00,1.00
 ECP002,Ecophon Akusto Wall C Texona,0.15,0.75,1.00,1.00,1.00,1.00
 ECP003,Ecophon Akusto Wall C Super G,0.15,0.70,1.00,1.00,1.00,1.00
+ECP004,Ecophon Saga B Elegant 25mm tl. 25 mm o.d.s. 25 mm,0.05,0.10,0.20,0.45,0.75,0.55
+ECP005,Ecophon Saga B Elegant 25mm tl. 25 mm o.d.s. 50 mm,0.05,0.15,0.30,0.65,0.50,0.60
+ECP006,Ecophon Saga B Elegant 25mm+ Saga Acoustic tl. 65 mm o.d.s. 70 mm,0.15,0.80,1.00,0.90,0.75,0.90
+ECP007,Ecophon Saga B Elegant 25mm tl. 25 mm o.d.s. 200 mm,0.15,0.50,0.50,0.40,0.50,0.70
+ECP008,Ecophon Saga B Elegant 25mm+ Saga Acoustic tl. 65 mm o.d.s. 200 mm,0.50,0.95,1.00,0.95,0.80,0.90
+ECP009,Ecophon Saga B Elegant 25mm+ TECH Slab tl. 65 mm o.d.s. 200 mm,0.50,0.90,1.00,1.00,0.80,0.95
+ECP010,Ecophon Saga B Elegant 25mm+ TECH Slab tl. 65 mm o.d.s. 65 mm,0.25,0.75,1.00,0.95,0.80,1.00
+ECP011,Ecophon Saga B Elegant 35mm tl. 35 mm o.d.s. 200 mm,0.20,0.40,0.55,0.40,0.60,0.75
+ECP012,Ecophon Saga B Elegant 35mm tl. 35 mm o.d.s. 35 mm,0.10,0.15,0.30,0.55,0.70,0.70
+ECP013,Ecophon Saga B Elegant 35mm+ TECH Slab tl. 75 mm o.d.s. 200 mm,0.55,0.95,1.00,1.00,0.90,1.00
+ECP014,Ecophon Saga B Elegant 35mm+ TECH Slab tl. 75 mm o.d.s. 75 mm,0.25,0.70,1.00,1.00,0.90,1.00
+ECP015,Ecophon Saga B Discreet 25mm tl. 25 mm o.d.s. 200 mm,0.15,0.45,0.45,0.35,0.45,0.70
+ECP016,Ecophon Saga B Discreet 25mm tl. 25 mm o.d.s. 25 mm,0.05,0.10,0.20,0.50,0.70,0.60
+ECP017,Ecophon Saga B Discreet 25mm+ TECH Slab tl. 65 mm o.d.s. 200 mm,0.40,0.95,0.95,0.80,0.65,0.85
+ECP018,Ecophon Saga B Discreet 25mm+ TECH Slab tl. 65 mm o.d.s. 65 mm,0.25,0.75,1.00,0.80,0.65,0.85
+ECP019,Ecophon Saga B Discreet 25mm+ Saga Acoustic tl. 65 mm o.d.s. 200 mm,0.45,0.95,0.95,0.85,0.65,0.85
+ECP020,Ecophon Saga B Discreet 25mm+ Saga Acoustic tl. 65 mm o.d.s. 70 mm,0.20,0.85,1.00,0.80,0.70,0.85
+ECP021,Ecophon Saga B Discreet 35mm tl. 35 mm o.d.s. 200 mm,0.25,0.50,0.55,0.40,0.60,0.80
+ECP022,Ecophon Saga B Discreet 35mm tl. 35 mm o.d.s. 35 mm,0.10,0.15,0.35,0.75,0.65,0.75
+ECP023,Ecophon Saga B Discreet 35mm+ TECH Slab tl. 75 mm o.d.s. 200 mm,0.55,0.95,1.00,0.90,0.85,1.00
+ECP024,Ecophon Saga B Discreet 35mm+ TECH Slab tl. 75 mm o.d.s. 75 mm,0.25,0.80,1.00,0.85,0.85,1.00
+ECP025,Ecophon Saga B Normal 25mm tl. 25 mm o.d.s. 200 mm,0.20,0.50,0.50,0.35,0.45,0.70
+ECP026,Ecophon Saga B Normal 25mm tl. 25 mm o.d.s. 25 mm,0.05,0.10,0.30,0.50,0.65,0.60
+ECP027,Ecophon Saga B Normal 25mm+ TECH Slab tl. 65 mm o.d.s. 200 mm,0.40,0.95,0.95,0.80,0.70,0.90
+ECP028,Ecophon Saga B Normal 25mm+ TECH Slab tl. 65 mm o.d.s. 65 mm,0.20,0.80,1.00,0.80,0.70,0.90
+ECP029,Ecophon Saga B Normal 25mm+ Saga Acoustic tl. 65 mm o.d.s. 200 mm,0.35,0.95,0.95,0.80,0.70,0.90
+ECP030,Ecophon Saga B Normal 25mm+ Saga Acoustic tl. 65 mm o.d.s. 70 mm,0.20,0.80,1.00,0.80,0.65,0.90
+ECP031,Ecophon Saga B Normal 35mm tl. 35 mm o.d.s. 200 mm,0.25,0.55,0.50,0.35,0.65,0.75
+ECP032,Ecophon Saga B Normal 35mm tl. 35 mm o.d.s. 35 mm,0.05,0.15,0.35,0.75,0.60,0.80
+ECP033,Ecophon Saga B Normal 35mm+ TECH Slab tl. 75 mm o.d.s. 200 mm,0.55,0.95,1.00,0.80,0.80,0.90
+ECP034,Ecophon Saga B Normal 35mm+ TECH Slab tl. 75 mm o.d.s. 75 mm,0.25,0.80,1.00,0.70,0.80,0.95
+ECP035,Ecophon Saga B Normal 50mm tl. 50 mm o.d.s. 50 mm,0.15,0.30,0.85,0.80,0.75,0.90
+ECP036,Ecophon Focus Levels tl. 40 mm o.d.s. 43 mm,0.20,0.75,1.00,1.00,1.00,1.00
+ECP037,Ecophon Focus Levels tl. 30 mm o.d.s. 33 mm,0.10,0.55,0.90,1.00,1.00,1.00
+ECP038,Ecophon Focus Levels tl. 20 mm o.d.s. 23 mm,0.05,0.30,0.75,1.00,1.00,1.00
+ECP039,Ecophon Focus Levels 20+30+40 mm o.d.s. 43 mm,0.15,0.55,0.90,0.95,1.00,1.00
+ECP040,Ecophon Focus A tl. 20 mm o.d.s. 50 mm,0.10,0.45,0.85,1.00,1.00,1.00
+ECP041,Ecophon Focus A tl. 20 mm o.d.s. 200 mm,0.50,0.90,1.00,0.90,1.00,0.95
+ECP042,Ecophon Focus A + Extra Bass tl. 70 mm o.d.s. 200 mm,0.90,0.90,0.90,0.95,1.00,1.00
+ECP043,Ecophon Focus A gamma tl. 20 mm o.d.s. 200 mm,0.55,0.40,0.50,0.35,0.20,0.25
+ECP044,Ecophon Focus A gamma+ Extra Bass tl. 70 mm o.d.s. 200 mm,0.70,0.40,0.45,0.40,0.20,0.25
+ECP045,Ecophon Focus B tl. 20 mm o.d.s. 23 mm,0.05,0.30,0.70,1.00,1.00,1.00
+ECP046,Ecophon Focus Ds tl. 20 mm o.d.s. 65 mm,0.15,0.55,0.90,1.00,1.00,1.00
+ECP047,Ecophon Focus Ds tl. 20 mm o.d.s. 200 mm,0.55,0.85,0.90,0.90,1.00,1.00
+ECP048,Ecophon Focus Ds + Extra Bass tl. 70 mm o.d.s. 200 mm,0.70,0.90,0.90,0.95,1.00,1.00
+ECP049,Ecophon Focus Dg tl. 20 mm o.d.s. 65 mm,0.20,0.60,0.95,0.95,0.95,1.00
+ECP050,Ecophon Focus Dg tl. 20 mm o.d.s. 200 mm,0.55,0.85,0.85,0.85,1.00,1.00
+ECP051,Ecophon Master A tl. 40 mm o.d.s. 50 mm,0.20,0.70,1.00,1.00,1.00,1.00
+ECP052,Ecophon Master A tl. 40 mm o.d.s. 200 mm,0.60,0.95,1.00,1.00,1.00,1.00
+ECP053,Ecophon Master B tl. 40 mm o.d.s. 43 mm,0.20,0.80,1.00,1.00,1.00,1.00
+ECP054,Ecophon Master Ds tl. 40 mm o.d.s. 95 mm,0.35,0.75,0.85,0.90,0.95,0.95
+ECP055,Ecophon Master Ds tl. 40 mm o.d.s. 200 mm,0.45,0.70,0.80,0.90,0.95,1.00
+ECP056,Ecophon Master E tl. 40 mm o.d.s. 60 mm,0.25,0.90,1.00,1.00,1.00,1.00
+ECP057,Ecophon Master E tl. 40 mm o.d.s. 200 mm,0.65,0.85,0.95,1.00,1.00,1.00
+ECP058,Ecophon Clipso So Acoustic 495AC GW40 tl. 40 mm o.d.s. 200 mm,0.20,0.85,0.90,0.85,0.95,1.00
+ECP059,Ecophon Clipso So Acoustic 495AC GW20 tl. 20 mm o.d.s. 200 mm,0.20,0.65,0.75,0.65,0.75,0.65
+ECP060,Ecophon Clipso So Acoustic 495AC LA50 tl. 50 mm o.d.s. 200 mm,0.30,0.85,0.95,0.85,0.90,1.00
+ECP061,Ecophon Clipso So Acoustic 495AC LA50 tl. 50 mm o.d.s. 55 mm,0.25,0.70,1.00,1.00,0.95,0.90
+ECP062,Ecophon Clipso So Acoustic 495AC LA10 tl. 10 mm o.d.s. 10 mm,0.15,0.30,0.45,0.60,0.85,0.95
+ECP063,Ecophon Clipso So Acoustic 495AC tl. 0 mm o.d.s. 200 mm,0.10,0.55,0.75,0.60,0.70,0.75
+ECP064,Ecophon Clipso So Acoustic 495D GW40 tl. 40 mm o.d.s. 200 mm,0.30,0.85,0.95,0.85,0.95,0.90
+ECP065,Ecophon Clipso So Acoustic 495D GW20 tl. 20 mm o.d.s. 200 mm,0.20,0.70,0.90,0.75,0.90,0.90
+ECP066,Ecophon Clipso So Acoustic 495D LA50 tl. 50 mm o.d.s. 200 mm,0.30,0.90,0.85,0.75,0.85,0.85
+ECP067,Ecophon Clipso So Acoustic 495D LA50 tl. 50 mm o.d.s. 55 mm,0.25,0.75,1.00,1.00,0.95,0.90
+ECP068,Ecophon Clipso So Acoustic 495D LA10 tl. 10 mm o.d.s. 10 mm,0.15,0.25,0.50,0.70,0.90,0.95
+ECP069,Ecophon Clipso So Acoustic 495D tl. 0 mm o.d.s. 200 mm,0.10,0.50,0.75,0.65,0.70,0.70

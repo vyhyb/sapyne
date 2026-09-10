@@ -27,8 +27,9 @@ DEFAULT_LIBRARY_FILES = {
     "ecophon_objects": "ecophon_objects.csv",
     "heraklith": "heraklith.csv",
     "objects": "objects.csv",
+    "mappy": "mappy.csv",
+    "literature": "literature.csv",
 }
-
 
 def latex_escape(value):
     """Escape text for safe usage in LaTeX.
@@ -140,6 +141,9 @@ def clean_table_for_export(
         ]
         cleaned = cleaned[ordered_front + ordered_rest]
 
+    if cleaned.empty:
+        return cleaned.astype(str).reset_index(drop=True)
+
     integer_columns = [] if integer_columns is None else list(integer_columns)
     integer_set = set(integer_columns)
     non_numeric_columns = set()
@@ -170,7 +174,7 @@ def clean_table_for_export(
             lambda value: "" if pd.isna(value) else f"{value:.{decimals}f}"
         )
         if decimal_comma:
-            cleaned[column] = cleaned[column].str.replace(".", ",", regex=False)
+            cleaned[column] = cleaned[column].astype(str).str.replace(".", ",", regex=False)
 
     return cleaned.reset_index(drop=True)
 
@@ -243,7 +247,7 @@ def _export_latex_table_from_template(
                 continue
 
             cell = str(value)
-            if preserve_latex and ("$" in cell or cell.startswith("\\")):
+            if preserve_latex and ("$" in cell or "\\" in cell):
                 converted.append(cell)
             else:
                 converted.append(latex_escape(cell))
@@ -262,7 +266,7 @@ def _export_latex_table_from_template(
     template = env.get_template("table_export.tex.j2")
 
     latex_tab = template.render(
-        caption=latex_escape(caption),
+        caption=caption if preserve_latex else latex_escape(caption),
         label=label,
         caption_spacing=caption_spacing,
         column_format=column_format,
@@ -569,5 +573,77 @@ def export_latex_absorption_table(
     )
     tex_file = f"{filename}_absorption_results.tex"
     print(f"Uloženo do: {tex_file}")
+    print("Pozn.: v preambuli LaTeX použijte \\usepackage{tabularx}.")
+    return latex_tab
+
+
+def export_latex_room_requirements_table(
+    room_type_name,
+    room_type_simple,
+    required_absorption_volume_ratio,
+    height,
+    volume,
+    filename="table_requirements",
+    label="tab:pozadavky",
+    caption="Zatřídění místnosti akustické požadavky dle \\citet{2023_CSN730527}",
+):
+    """Build and export the room requirements table to LaTeX.
+
+    Parameters
+    ----------
+    room_type_name : str
+        Human-readable room type name.
+    room_type_simple : RoomTypeSimple
+        Room type object with category and absorption dependency.
+    height : float
+        Light height of the room in meters.
+    volume : float
+        Room volume in cubic meters.
+    filename : str, optional
+        Output file base name. Default: "table_requirements".
+    label : str, optional
+        LaTeX label key. Default: "tab:pozadavky".
+    caption : str, optional
+        LaTeX caption text.
+
+    Returns
+    -------
+    str
+        Rendered LaTeX table string.
+    """
+    from .standard2023 import ABS_DEPENDENCY_LATEX
+    
+    category = room_type_simple.category_str
+    abs_requirement_latex = ABS_DEPENDENCY_LATEX[category](height)
+    
+    # Build simple key-value table
+    table = pd.DataFrame({
+        "Property": [
+            "Typ místnosti",
+            r"Kategorie dle Tabulky \ref{tab:csn730527}",
+            r"Světlá výška místnosti $h$",
+            "Objem místnosti",
+            r"Požadavek: Minimální hodnota $A/V$",
+        ],
+        "Value": [
+            room_type_name,
+            f"Kategorie {category}",
+            f"{height:.1f} m",
+            f"{volume:.1f} $\\mathrm{{m^3}}$",
+            abs_requirement_latex[:-1] + f" = {required_absorption_volume_ratio:.2f} \\mathrm{{m^{-1}}}$",
+        ],
+    })
+    
+    latex_tab = _export_latex_table_from_template(
+        table=table,
+        filename=filename,
+        label=label,
+        caption=caption,
+        column_format="l X",
+        caption_spacing="0.5em",
+        row_lines=False,
+        preserve_latex=True,
+    )
+    print(f"Uloženo do: {filename}.tex")
     print("Pozn.: v preambuli LaTeX použijte \\usepackage{tabularx}.")
     return latex_tab

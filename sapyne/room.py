@@ -394,6 +394,86 @@ class Room:
         else:
             self.objects = pd.concat([self.objects, material], ignore_index=True)
 
+    def remove_surface(self, surface_reference: str, remove_replacements: bool = False):
+        """Remove a surface from the room.
+
+        Parameters
+        ----------
+        surface_reference : str
+            Surface reference by ``SurfaceID`` or unique ``Name``.
+        remove_replacements : bool, optional
+            If ``True``, also remove all surfaces that replace the removed
+            surface directly or indirectly. If ``False``, raise an error when
+            dependent replacement surfaces exist.
+        """
+        if self.surfaces.empty:
+            raise ValueError("No surfaces available to remove")
+
+        target_surface_id = self._resolve_reference_surface_id(
+            surface_reference, self.surfaces
+        )
+
+        dependent_mask = self.surfaces[REPLACES_SURFACE_ID] == target_surface_id
+        dependent_ids = (
+            self.surfaces.loc[dependent_mask, SURFACE_ID].dropna().astype(str).tolist()
+        )
+        if dependent_ids and not remove_replacements:
+            raise ValueError(
+                "Cannot remove surface with dependent replacements: "
+                f"{', '.join(dependent_ids)}. "
+                "Set remove_replacements=True to remove dependents as well."
+            )
+
+        remove_ids = {target_surface_id}
+        if remove_replacements:
+            while True:
+                children = self.surfaces.loc[
+                    self.surfaces[REPLACES_SURFACE_ID].isin(remove_ids), SURFACE_ID
+                ]
+                child_ids = set(children.dropna().astype(str).tolist())
+                new_children = child_ids - remove_ids
+                if not new_children:
+                    break
+                remove_ids.update(new_children)
+
+        keep_mask = ~self.surfaces[SURFACE_ID].isin(remove_ids)
+        self.surfaces = self.surfaces.loc[keep_mask].reset_index(drop=True)
+        self.resolved_surfaces = None
+
+    def remove_object(self, object_reference: str):
+        """Remove an object from the room.
+
+        Parameters
+        ----------
+        object_reference : str
+            Object reference by ``ID`` or unique ``Name``.
+        """
+        if self.objects.empty:
+            raise ValueError("No objects available to remove")
+
+        by_id = self.objects.loc[self.objects["ID"] == object_reference]
+        if len(by_id) == 1:
+            index_to_drop = by_id.index[0]
+        elif len(by_id) > 1:
+            raise ValueError(
+                f"Object reference '{object_reference}' is ambiguous by ID. "
+                "Use a unique Name."
+            )
+        else:
+            by_name = self.objects.loc[self.objects["Name"] == object_reference]
+            if len(by_name) == 1:
+                index_to_drop = by_name.index[0]
+            elif len(by_name) > 1:
+                raise ValueError(
+                    f"Object reference '{object_reference}' is ambiguous by Name"
+                )
+            else:
+                raise ValueError(
+                    f"Object reference '{object_reference}' not found in the room"
+                )
+
+        self.objects = self.objects.drop(index=index_to_drop).reset_index(drop=True)
+
     def update_absorption(self):
         # does a complete recalculation. TODO think of a more efficient way.
         resolved_surfaces = self.resolve_surfaces()

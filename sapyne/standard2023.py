@@ -97,6 +97,11 @@ ABS_DEPENDENCY = {
     "3": lambda height: 0.30 if height < 2.5 else 1 / (1.47 + 4.69 * np.log10(height)),
 }
 
+ABS_DEPENDENCY_LATEX = {
+    "1": lambda height: r"$A/V \geq \dfrac{1}{4,8 + 4,69\log h}$" if height >= 2.5 else r"$A/V \geq 0,15$",
+    "2": lambda height: r"$A/V \geq \dfrac{1}{2,49 + 4,69\log h}$" if height >= 2.5 else r"$A/V \geq 0,23$",
+    "3": lambda height: r"$A/V \geq \dfrac{1}{1,47 + 4,69\log h}$" if height >= 2.5 else r"$A/V \geq 0,30$",
+}
 
 @dataclass
 class RoomType:

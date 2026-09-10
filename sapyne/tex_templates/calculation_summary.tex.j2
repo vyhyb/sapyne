@@ -1,0 +1,43 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{parskip}
+
+\geometry{margin=25mm}
+
+\title{ {{- title | latex_escape -}} }
+\date{ {{- date | latex_escape -}} }
+
+\begin{document}
+
+\maketitle
+
+\noindent\textbf{Autoři:} {{ authors | join(', ') | latex_escape }}
+
+\section*{Description}
+{{ description | latex_escape }}
+
+\section*{Povrchy}
+{{ surfaces_table }}
+
+\section*{Objekty}
+{{ objects_table }}
+
+\section*{Výsledky pohltivosti}
+{{ absorption_table }}
+
+\section*{Graf výsledků}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{ {{- figure_path | latex_escape -}} }
+    \caption{Vyhodnocení výsledné pohltivosti a poměru $A/V$.}
+\end{figure}
+
+\end{document}
