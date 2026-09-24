@@ -76,9 +76,13 @@ class DiracReverberationData:
 
 REW_QUANTITIES = [
     "EDT (s)",
+    "r_EDT (s)",
     "T20 (s)",
+    "r_T20 (s)",
     "T30 (s)",
+    "r_T30 (s)",
     "Topt (s)",
+    "r_Topt (s)",
     "ToptStart (dB)",
     "ToptEnd (dB)",
     "T60M (s)",
@@ -106,10 +110,10 @@ class REWReverberationData:
         """
         self.path = path
         self.bands = bands
-        if bands == "octave":
-            filt_str = "1/1"
-        elif bands == "third":
+        if bands == "third":
             filt_str = "1/3"
+        else:
+            filt_str = "1/1"
 
         pattern = re.compile(filt_str)
         with open(path, encoding=encoding) as f:

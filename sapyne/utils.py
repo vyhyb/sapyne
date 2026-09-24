@@ -18,7 +18,9 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
 from .room import BANDS
 
-TEMPLATE_DIR = Path(__file__).resolve().parent.parent / "templates"
+PACKAGE_DIR = Path(__file__).resolve().parent
+TEMPLATE_DIR = PACKAGE_DIR / "tex_templates"
+LIBRARY_DIR = PACKAGE_DIR / "library"
 DEFAULT_LIBRARY_FILES = {
     "basic": "basic.csv",
     "rigips": "rigips.csv",
@@ -62,13 +64,14 @@ def latex_escape(value):
     return text
 
 
-def load_material_libraries(library_dir="sapyne/library", library_files=None):
+def load_material_libraries(library_dir=None, library_files=None):
     """Load a set of material library CSV files into pandas DataFrames.
 
     Parameters
     ----------
-    library_dir : str or pathlib.Path, optional
-        Base directory containing CSV library files.
+    library_dir : str or pathlib.Path or None, optional
+        Base directory containing CSV library files. When ``None``, use the
+        material libraries bundled with the installed package.
     library_files : dict[str, str] or None, optional
         Mapping ``{key: filename}``. When ``None``, ``DEFAULT_LIBRARY_FILES``
         is used.
@@ -78,7 +81,7 @@ def load_material_libraries(library_dir="sapyne/library", library_files=None):
     dict[str, pandas.DataFrame]
         Loaded libraries keyed by names from ``library_files``.
     """
-    library_dir = Path(library_dir)
+    library_dir = LIBRARY_DIR if library_dir is None else Path(library_dir)
     library_files = DEFAULT_LIBRARY_FILES if library_files is None else library_files
 
     libraries = {}
