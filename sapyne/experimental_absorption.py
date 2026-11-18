@@ -28,7 +28,7 @@ def eq_absorption_area(
     attenuation_coef : array-like, optional
         Sound attenuation coefficient in air. Default is 0. [m⁻¹]
     speed_sound : float, optional
-        Speed of sound in air. Default is 340. [m/s]
+        Speed of sound in air. Default is 343. [m/s]
 
     Returns
     -------
@@ -177,3 +177,34 @@ def absorption_coeff_ISO_354(
         absorption_sample_std, absorption_reference_std, specimen_area
     )
     return absorption_coeff, absorption_coeff_std
+
+
+
+def speed_of_sound(temperature: float, reference_temperature = 273.15) -> float:
+    r"""Calculate the speed of sound in air based on ISO 9613-1:1993.
+
+    Parameters
+    ----------
+    temperature : float
+        Air temperature at the time of measurement. [degC]
+    reference_temperature : float, optional
+        Reference temperature (0 °C). Default is 273.15.
+
+    Returns
+    -------
+    float
+        Speed of sound in air. [m/s]
+
+    Notes
+    -----
+    The speed of sound $c$ is calculated using the formula:
+    $$
+    c = 343.2 \cdot \sqrt{\frac{T + T_0}{T_0 + 20}}
+    $$
+    where:
+    - $T$ is the temperature [°C]
+    - $H$ is the relative humidity [%]
+    - $P$ is the atmospheric pressure [kPa]
+    - $T_0$ is the reference temperature [K]
+    """
+    return 343.2 * ((temperature + reference_temperature) / (reference_temperature + 20)) ** 0.5

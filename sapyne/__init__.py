@@ -50,7 +50,7 @@ Please make sure to update tests as appropriate.
 """
 
 from .attenuation import attenuation_coefficient
-from .experimental_absorption import eq_absorption_area, absorption_coeff_ISO_354
+from .experimental_absorption import eq_absorption_area, absorption_coeff_ISO_354, speed_of_sound
 from .models import t60_sabine, t60_eyring, t60_mellington, t60_csn730525
 from .models import calc_alpha_mean
 from .standard import ROOM_TYPES
